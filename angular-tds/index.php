@@ -14,12 +14,12 @@
 	
 	<body data-ng-controller="NoteController as noteCtrl">
 		<div class="container">
-			<form name="message">
+			<form name="message" data-ng-submit="noteCtrl.addNote()">
 				<label for="messageNote">Note :</label>
 				<br>
-				<textarea name="messageNote" id="messageNote" data-ng-model="messageNote"></textarea>
+				<textarea id="messageNote" data-ng-trim="false" maxlength="100" data-ng-model="noteCtrl.messageNote" data-ng-change="noteCtrl.count()">{{noteCtrl.messageNote}}</textarea>
 			</form>
-			<span class="restant" >Nombre de carat&egrave;res restants : {{noteCtrl.caracRestant}}</span>
+			<span class="restant" data-ng-model="noteCtrl.messageLength">Nombre de carat&egrave;res restants : {{noteCtrl.messageLength}}</span>
 			<br>
 			
 			<div class="enregistre" data-ng-show="true">

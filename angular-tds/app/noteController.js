@@ -1,11 +1,10 @@
 angular.module('NoteApp').controller('NoteController', function(){
 	
-	var caracTot = 100;
-	this.caracRestant = 100;
-	/*var caracInput = element(by.model('messageNote'));*/
+	this.messageNote = "";
+	this.messageLength = 0;
 	
-	function count() {
-		
-	}
+	this.count = function() {
+		this.messageLength = this.messageNote.length;
+	};
 	
 });
