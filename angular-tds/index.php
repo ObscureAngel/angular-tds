@@ -21,7 +21,7 @@
 			</form>
 			<span class="restant" data-ng-model="noteCtrl.messageLength">Nombre de carat&egrave;res restants : {{noteCtrl.messageLength}}</span>
 			<br>
-			
+			<button data-ng-click="noteCtrl.clear()">Enregistrer</button>
 			<div class="enregistre" data-ng-show="true">
 				<span>Note enregistr&eacute;e</span>
 			</div>
