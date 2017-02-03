@@ -8,6 +8,7 @@
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 		<link type="text/css" rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/angular-cookies.min.js"></script>
 		<script type="text/javascript" src="app/noteApp.js"></script>
 		<script type="text/javascript" src="app/noteController.js"></script>
 	</head>
@@ -21,8 +22,8 @@
 			</form>
 			<span class="restant" data-ng-model="noteCtrl.messageLength">Nombre de carat&egrave;res restants : {{noteCtrl.messageLength}}</span>
 			<br>
-			<button data-ng-click="noteCtrl.clear()">Enregistrer</button>
-			<div class="enregistre" data-ng-show="true">
+			<button data-ng-click="noteCtrl.save()">Enregistrer</button>
+			<div class="enregistre" data-ng-show="noteCtrl.status">
 				<span>Note enregistr&eacute;e</span>
 			</div>
 			
