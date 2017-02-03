@@ -1,6 +1,10 @@
 angular.module('NoteApp',['ngCookies']).controller('NoteController', ["$cookies", function(cookies){
 	
-	this.messageNote = "";
+	var txt = cookies.get('monCookie');
+	
+	//cookies.put('monCookie', "");
+	
+	this.messageNote = txt;
 	this.messageLength = 100;
 	this.status = false;
 	
@@ -18,7 +22,6 @@ angular.module('NoteApp',['ngCookies']).controller('NoteController', ["$cookies"
 		
 		cookies.put('monCookie', monTexte);
 		
-		this.clear();
 		this.status = true;
 	};
 	

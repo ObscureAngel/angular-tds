@@ -9,16 +9,27 @@
 		<link type="text/css" rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/angular-cookies.min.js"></script>
-		<script type="text/javascript" src="app/noteApp.js"></script>
-		<script type="text/javascript" src="app/noteController.js"></script>
 		<script type="text/javascript" src="app/serviceApp.js"></script>
 		<script type="text/javascript" src="app/serviceController.js"></script>
 	</head>
 	
-	<body data-ng-app="NoteApp" data-ng-app="ServiceApp">
+	<body data-ng-app="ServiceApp">
 		<article>
-			<a href="TD-Note.html">TD-Note</a>
-			<a href="TD-Service.html">TD-Service</a>
+			<a href="index.php">Retour</a>
+			<div class="container" data-ng-controller="ServiceController as serviceCtrl">
+				<h1>Services</h1>
+				<div class="panel-body">
+					<span>Choisissez les services &agrave; inclure</span>
+					<br>
+					<span>{{serviceCtrl.nbrServices}} services s&eacute;lectionn&eacute;(s)</span>
+				</div>
+				<div data-ng-repeat="service in serviceCtrl.services" style="width: 275px;">
+					<div class="active" data-ng-click="serviceCtrl.toggleActive()">
+						<p>{{service.name}}
+						<em class="pull-right">{{service.price | currency}}</em></p>
+					</div>
+				</div>
+			</div>
 		</article>
 	</body>
 
