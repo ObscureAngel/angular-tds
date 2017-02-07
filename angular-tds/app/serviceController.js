@@ -32,8 +32,13 @@ angular.module('ServiceApp', []).controller('ServiceController', function(){
 
 	this.products = listeServices;
 	this.prixTotal = 300;
+	this.prixRemise = 0;
 	this.nbrServices = 1;
 	this.listePromo = promo;
+	this.promoActive = false;
+	this.inputPromo = "";
+	this.resultPromo = 0;
+	this.msgPromo = ""
 
 	this.total = function() {
 		var i;
@@ -43,6 +48,7 @@ angular.module('ServiceApp', []).controller('ServiceController', function(){
 				this.prixTotal = this.prixTotal + this.products[i].price;
 			};
 		};
+		this.verifPromo();
 
 	};
 
@@ -60,7 +66,21 @@ angular.module('ServiceApp', []).controller('ServiceController', function(){
 	};
 	
 	this.verifPromo = function() {
-		
+		if (this.promoActive) {
+			if (this.listePromo[this.inputPromo] == null) {
+				this.resultPromo = "inv";
+				this.msgPromo = "Code invalide";
+			} else {
+				this.msgPromo = "";
+				this.resultPromo = this.prixTotal * this.listePromo[this.inputPromo];
+				this.resultPromo = Math.round(this.resultPromo*100)/100
+				this.prixRemise = this.prixTotal - this.resultPromo;
+			}
+		}
+	};
+	
+	this.toglePromoActive = function() {
+		this.promoActive = !this.promoActive;
 	};
 
 });

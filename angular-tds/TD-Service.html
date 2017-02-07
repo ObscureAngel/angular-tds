@@ -29,7 +29,18 @@
 				</div>
 				<br><br>
 				<span>Prix total de la prestation : {{servCtrl.prixTotal | currency}}</span>
-				<input type="text" name="promo" id="promo" data-ng-model="servCtrl.inputPromo" data-ng-change="servCtrl.verifPromo()">
+				<br>
+				<fieldset>
+					{{servCtrl.listePromo["yolo"]}}
+					<input type="checkbox" name="activePromo" id="activePromo" data-ng-click="servCtrl.togglePromoActive()">
+					<input type="text" name="promo" id="promo" data-ng-model="servCtrl.inputPromo" data-ng-change="servCtrl.verifPromo()">
+				</fieldset>
+				<br>
+				<div data-ng-show="servCtrl.promoActive">
+					<span>Remise : {{servCtrl.resultPromo | currency}}{{servCtrl.msgPromo}}</span>
+					<br>
+					<span>Total avec remise : {{servCtrl.prixRemise | currency}}</span>
+				</div>
 			</div>
 		</article>
 	</body>
