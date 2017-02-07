@@ -22,13 +22,14 @@
 					<span>{{servCtrl.nbrServices}} services s&eacute;lectionn&eacute;(s)</span>
 				</div>
 				<div data-ng-repeat="prod in servCtrl.products" class="panel-body">
-					<fieldset data-ng-click="servCtrl.toggleActive(prod.)">
-						<p>{{prod.name}}
-						<em class="pull-right">{{prod.price | currency}}</em></p>
-					</fieldset>
+					<button data-ng-click="servCtrl.toggleActive(prod.number)" class="btn btn-default" data-ng-class="{'active' : prod.active}">
+						<span>{{prod.name}}
+						<em class="pull-right">{{prod.price | currency}}</em></span>
+					</button>
 				</div>
 				<br><br>
 				<span>Prix total de la prestation : {{servCtrl.prixTotal | currency}}</span>
+				<input type="text" name="promo" id="promo" data-ng-model="servCtrl.inputPromo" data-ng-change="servCtrl.verifPromo()">
 			</div>
 		</article>
 	</body>
