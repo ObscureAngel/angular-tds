@@ -1,6 +1,6 @@
 angular.module('ServiceApp', []).controller('ServiceController', function(){
 	
-	this.services = listeServices;
+	this.products = listeServices;
 	this.prixTotal = 0;
 	this.nbrServices = 1;
 	
@@ -28,8 +28,8 @@ angular.module('ServiceApp', []).controller('ServiceController', function(){
 		this.prixTotal = 0;
 	};
 	
-	this.toggleActive = function() {
-		
+	this.toggleActive = function(service) {
+		this.products[service].active = true;
 	};
 	
 });
