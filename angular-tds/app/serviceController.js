@@ -79,8 +79,12 @@ angular.module('ServiceApp', []).controller('ServiceController', function(){
 		}
 	};
 	
-	this.toglePromoActive = function() {
-		this.promoActive = !this.promoActive;
+	this.togglePromoActive = function() {
+		if (this.promoActive == true) {
+			this.promoActive = false;
+		} else {
+			this.promoActive = true;
+		}
 	};
 
 });
