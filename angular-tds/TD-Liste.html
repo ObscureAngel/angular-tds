@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html lang="fr">
 
-</body>
+	<head>
+		<title>Angular TDs</title>
+		<meta http-equiv="content-type" content="text/html" charset="utf-8">
+		<meta name="author" content="ObscureAngel">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="app/ListeApp.js"></script>
+		<script type="text/javascript" src="app/ListeController.js"></script>
+	</head>
+	
+	<body data-ng-app="ListeApp">
+		<article data-ng-controller="ListeController as listeCtrl">
+			<div class="container">
+				<h1>Liste, selectionnez vos produits</h1>
+				<a href="index.php">Retour</a>
+				<div class="form-group">
+					<div style="display: inline-block;">
+						Produits disponibles :
+						<select size="10" multiple>
+							<optiondata-ng-repeat="dispo in listeCtrl.dispoItems" >{{dispo.title}}</option>
+						</select>
+						<br>
+						
+						<div class="btn btn-primary" title="Ajouter" data-ng-click="addToIncluded()">
+							<span>|<<</span>
+						</div>
+						<button>|<</button>
+						<button>>|</button>
+						<button>>>|</button>
+						
+						Produits à inclure :
+						<div>
+							<p data-ng-repeat="inclu in listeCtrl.included">{{inclu.title}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</body>
+
 </html>
