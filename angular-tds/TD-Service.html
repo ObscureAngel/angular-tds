@@ -31,7 +31,6 @@
 				<span>Prix total de la prestation : {{servCtrl.prixTotal | currency}}</span>
 				<br>
 				<fieldset>
-					{{servCtrl.listePromo["yolo"]}}
 					<input type="checkbox" name="activePromo" id="activePromo" data-ng-click="servCtrl.togglePromoActive()">
 					<input type="text" name="promo" id="promo" data-ng-model="servCtrl.inputPromo" data-ng-change="servCtrl.verifPromo()">
 				</fieldset>

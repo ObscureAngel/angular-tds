@@ -14,30 +14,46 @@
 	
 	<body data-ng-app="ListeApp">
 		<article data-ng-controller="ListeController as listeCtrl">
-			<div class="container">
+		
+			<div class="container" data-ng-show="listeCtrl.step == 1">
 				<h1>Liste, selectionnez vos produits</h1>
 				<a href="index.php">Retour</a>
+				<br>
+				Produits disponibles :
+				Produits à inclure :
 				<div class="form-group">
 					<div style="display: inline-block;">
-						Produits disponibles :
-						<select size="10" multiple>
-							<optiondata-ng-repeat="dispo in listeCtrl.dispoItems" >{{dispo.title}}</option>
+						<select data-ng-model="listeCtrl.selectedDispoItem" data-ng-dbclick="listeCtrl.selectItem()" size="10" data-ng-options="dispo.title for dispo in listeCtrl.dispoItems" multiple>
 						</select>
-						<br>
 						
-						<div class="btn btn-primary" title="Ajouter" data-ng-click="addToIncluded()">
+						<div class="btn btn-primary" title="Ajouter tout" data-ng-click="listeCtrl.addAllToIncluded()">
+							<span>>>|</span>
+						</div>
+						<div class="btn btn-primary" title="Ajouter un" data-ng-click="listeCtrl.addToIncluded()">
+							<span>>|</span>
+						</div>
+						<div class="btn btn-primary" title="Retirer un" data-ng-click="listeCtrl.removeFromIncluded()">
+							<span>|<</span>
+						</div>
+						<div class="btn btn-primary" title="Retirer tout" data-ng-click="listeCtrl.removeAllFromIncluded()">
 							<span>|<<</span>
 						</div>
-						<button>|<</button>
-						<button>>|</button>
-						<button>>>|</button>
 						
-						Produits à inclure :
-						<div>
-							<p data-ng-repeat="inclu in listeCtrl.included">{{inclu.title}}</p>
-						</div>
+						<select data-ng-model="selectedIncluItem" data-ng-dbclick="listeCtrl.deselectItem()" size="10" data-ng-options="inclu.title for inclu in listeCtrl.included" multiple>
+						</select>
 					</div>
 				</div>
+				{{listeCtrl.included.length}} produit(s) selectionnes
+				<button data-ng-click="listeCtrl.step = 2">Suivant</button>
+			</div>
+			
+			<div class="container" data-ng-show="listeCtrl.step == 2">
+				<h1>Liste, selectionnez vos produits</h1>
+				<a href="index.php">Retour</a>
+				<br>
+				Produits selectionnes :
+				
+				<button data-ng-click="listeCtrl.step = 1">Precedent</button>
 			</div>
 		</article>
 	</body>

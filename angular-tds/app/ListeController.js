@@ -40,9 +40,27 @@ angular.module('ListeApp', []).controller('ListeController', function() {
 	this.dispoItems = itemsLocal;
 	this.step = 1;
 	this.included = []
-	this.selected = 0
+	this.selectedDispoItem = 0;
+	this.selectedIncluItem = 0;
 	
 	this.addToIncluded = function() {
-		this.included.push(this.dispoItems[selected]);
+		this.included.push(this.selectedDispoItem);
 	};
+	
+	this.addAllToIncluded = function() {
+		this.included = this.dispoItems;
+	};
+	
+	this.removeAllFromIncluded = function() {
+		this.included = [];
+	};
+	
+	this.removeFromIncluded = function() {
+		this.included.splice(this.included.indexOf(this.selectedIncluItem),1);
+	}
+	
+	this.selectItem = function() {
+		
+	}
+	
 });
