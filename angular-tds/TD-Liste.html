@@ -25,20 +25,25 @@
 					<div style="display: inline-block;">
 						<select data-ng-model="listeCtrl.selectedDispoItem" data-ng-dbclick="listeCtrl.selectItem()" size="10" data-ng-options="dispo.title for dispo in listeCtrl.dispoItems" multiple>
 						</select>
-						
+					</div>
+					<div style="display: inline-block;">
 						<div class="btn btn-primary" title="Ajouter tout" data-ng-click="listeCtrl.addAllToIncluded()">
-							<span>>>|</span>
+							<span>--|</span>
 						</div>
+						<br>
 						<div class="btn btn-primary" title="Ajouter un" data-ng-click="listeCtrl.addToIncluded()">
-							<span>>|</span>
+							<span>-|</span>
 						</div>
+						<br>
 						<div class="btn btn-primary" title="Retirer un" data-ng-click="listeCtrl.removeFromIncluded()">
-							<span>|<</span>
+							<span>|-</span>
 						</div>
+						<br>
 						<div class="btn btn-primary" title="Retirer tout" data-ng-click="listeCtrl.removeAllFromIncluded()">
-							<span>|<<</span>
+							<span>|--</span>
 						</div>
-						
+					</div>
+					<div style="display: inline-block">
 						<select data-ng-model="selectedIncluItem" data-ng-dbclick="listeCtrl.deselectItem()" size="10" data-ng-options="inclu.title for inclu in listeCtrl.included" multiple>
 						</select>
 					</div>
