@@ -110,10 +110,10 @@
 						size="10" multiple="multiple"></select>
 					</label>
 					<div>
-						<ng-pluralize count="lcCtrl.includedItems.length"
+						<!-- ng-pluralize count="lcCtrl.includedItems.length"
 							when="{0:'Aucun produit à inclure',
 											1:'1 produit inclus',
-											'other':'{} produits inclus'}"></ng-pluralize>
+											'other':'{} produits inclus'}"></ng-pluralize -->
 					</div>
 	
 				</div>
@@ -145,7 +145,7 @@
 			<h1>Votre choix</h1>
 			<ul>
 				<li data-ng-repeat="item in lcCtrl.includedItems">
-					<a href="{{item.url}}"><img ng-src="{{item.image}}" /></a>
+					<a href="{{item.url}}"><img data-ng-src="{{item.image}}" /></a>
 					<p>{{item.title}}</p>
 				</li>
 			</ul>
