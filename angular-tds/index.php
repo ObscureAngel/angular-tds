@@ -21,6 +21,7 @@
 			<a href="TD-Service.html">TD-Service</a>
 			<a href="TD-Liste.html">TD-Liste</a>
 			<a href="TD-Contact.html">TD-Contact</a>
+			<a href="TD-Devise.html">TD-Devise</a>
 		</article>
 	</body>
 

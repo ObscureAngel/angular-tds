@@ -10,57 +10,151 @@
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="app/ListeApp.js"></script>
 		<script type="text/javascript" src="app/ListeController.js"></script>
+		<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+
+		body,input,select,textarea{
+			font:15px/1.3 'Century gothic', sans-serif!important;
+			color: #5e5b64;
+		}
+		
+		a, a:visited {
+			outline:none;
+			color:#389dc1;
+		}
+		
+		a:hover{
+			text-decoration:none;
+		}
+		
+		section, footer, header, aside, nav{
+			display: block;
+		}
+		
+		/*-------------------------
+			The order form
+		--------------------------*/
+		
+		form{
+			background-color: #61a1bc;
+			border-radius: 2px;
+			box-shadow: 0 1px 1px #ccc;
+			padding: 35px 60px;
+			margin: 50px auto;
+		}
+		#container{
+			padding: 0px 10px 15px 30px;
+		}
+		form h1{
+			color:#fff;
+			font-size:30px;
+			font-family:'Century gothic', cursive;
+			font-weight: normal;
+			line-height:1;
+			text-shadow:0 3px 0 rgba(0,0,0,0.1);
+		}
+		
+		ul{
+			list-style: none;
+			width: 428px;
+			margin: 0 auto;
+			text-align: left;
+		}
+		
+		ul li{
+			border-bottom: 1px solid #ddd;
+			padding: 10px;
+			overflow: hidden;
+		}
+		
+		ul li img{
+			width:60px;
+			height:60px;
+			float:left;
+			border:none;
+		}
+		
+		ul li p{
+			margin-left: 75px;
+			font-weight: bold;
+			padding-top: 12px;
+			color:#6e7a7f;
+		}
+		
+		div.inline-block{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.list-btn{
+			width: 70px;
+			display: block!important;
+			margin: 12px 6px
+		}
+		select{
+			min-width: 500px;
+		}
+		</style>
 	</head>
 	
 	<body data-ng-app="ListeApp">
-		<article data-ng-controller="ListeController as listeCtrl">
-		
-			<div class="container" data-ng-show="listeCtrl.step == 1">
-				<h1>Liste, selectionnez vos produits</h1>
-				<a href="index.php">Retour</a>
-				<br>
-				Produits disponibles :
-				Produits à inclure :
-				<div class="form-group">
-					<div style="display: inline-block;">
-						<select data-ng-model="listeCtrl.selectedDispoItem" data-ng-dbclick="listeCtrl.selectItem()" size="10" data-ng-options="dispo.title for dispo in listeCtrl.dispoItems" multiple>
-						</select>
+		<form class="img-rounded" id="choixMultiples" data-ng-controller="ListesController as lcCtrl">
+		<div data-ng-show="lcCtrl.step==1">
+			<h1>Sélectionnez vos produits</h1>
+			<div class="form-group">
+				<div class="inline-block">
+					<label>Produits disponibles : <select title="Double-cliquez pour ajouter" class="form-control"
+						data-ng-model="selectedDispoItems" data-ng-dblclick="lcCtrl.selectItem()" data-ng-options="item.title for item in lcCtrl.dispoItems"
+						size="10" multiple="multiple"></select>
+					</label>
+					<div>
+						<ng-pluralize count="lcCtrl.includedItems.length"
+							when="{0:'Aucun produit à inclure',
+											1:'1 produit inclus',
+											'other':'{} produits inclus'}"></ng-pluralize>
 					</div>
-					<div style="display: inline-block;">
-						<div class="btn btn-primary" title="Ajouter tout" data-ng-click="listeCtrl.addAllToIncluded()">
-							<span>--|</span>
-						</div>
-						<br>
-						<div class="btn btn-primary" title="Ajouter un" data-ng-click="listeCtrl.addToIncluded()">
-							<span>-|</span>
-						</div>
-						<br>
-						<div class="btn btn-primary" title="Retirer un" data-ng-click="listeCtrl.removeFromIncluded()">
-							<span>|-</span>
-						</div>
-						<br>
-						<div class="btn btn-primary" title="Retirer tout" data-ng-click="listeCtrl.removeAllFromIncluded()">
-							<span>|--</span>
-						</div>
-					</div>
-					<div style="display: inline-block">
-						<select data-ng-model="selectedIncluItem" data-ng-dbclick="listeCtrl.deselectItem()" size="10" data-ng-options="inclu.title for inclu in listeCtrl.included" multiple>
-						</select>
-					</div>
+	
 				</div>
-				{{listeCtrl.included.length}} produit(s) selectionnes
-				<button data-ng-click="listeCtrl.step = 2">Suivant</button>
+				<div class="inline-block">
+					<div title="Ajouter" class="btn btn-primary list-btn" data-ng-click="lcCtrl.addToIncluded()"
+					data-ng-disabled="lcCtrl.selectedDispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span></div>
+					<div title="Ajouter tous" class="btn btn-primary list-btn" data-ng-click="lcCtrl.addAllToIncluded()"
+					data-ng-disabled="lcCtrl.dispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></div>
+					<div title="Retirer" class="btn btn-primary list-btn" data-ng-click="lcCtrl.removeFromIncluded()"
+					data-ng-disabled="selectedIncludedItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></div> 
+					<div title="Retirer tous" class="btn btn-primary list-btn" data-ng-click="lcCtrl.removeAllFromIncluded()"
+					data-ng-disabled="lcCtrl.includedItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-backward"></span></div>
+				</div>
+				<div class="inline-block">
+					<label>Produits à inclure : <select title="Double-cliquez pour ajouter" class="form-control"
+						data-ng-model="lcCtrl.selectedIncludedItems" data-ng-dblclick="lcCtrl.deselectItem()"
+						data-ng-options="item.title for item in lcCtrl.includedItems" size="10"
+						multiple="multiple"></select>
+					</label>
+				</div>
 			</div>
-			
-			<div class="container" data-ng-show="listeCtrl.step == 2">
-				<h1>Liste, selectionnez vos produits</h1>
-				<a href="index.php">Retour</a>
-				<br>
-				Produits selectionnes :
-				
-				<button data-ng-click="listeCtrl.step = 1">Precedent</button>
+			<div>
+				<div class="btn btn-primary" style="width:98%;text-align: right" data-ng-click="step=2" data-ng-disabled="lcCtrl.includedItems.length<1">
+					<span>Etape suivante    </span><span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-right"></span>
+				</div>
 			</div>
-		</article>
+		</div>
+		<div data-ng-show="lcCtrl.step==2">
+			<h1>Votre choix</h1>
+			<ul>
+				<li data-ng-repeat="item in lcCtrl.includedItems">
+					<a href="{{item.url}}"><img ng-src="{{item.image}}" /></a>
+					<p>{{item.title}}</p>
+				</li>
+			</ul>
+				<div><div class="btn btn-primary" style="width:98%;text-align: right" data-ng-click="lcCtrl.step=1">
+					<span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-left"></span><span>     Retour au choix précédent</span>
+				</div>
+			</div>
+		</div>
+	</form>
 	</body>
 
 </html>
