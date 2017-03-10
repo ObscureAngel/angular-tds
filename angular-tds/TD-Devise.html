@@ -13,7 +13,8 @@
 	
 	<body>
 		<article data-ng-controller="currencyController as curCtrl">
-		
+			
+			<input type="text" name="promo" id="promo" data-ng-model="curCtrl.what" data-ng-change="curCtrl.getResult()">
 		</article>
 	</body>
 </html>
